@@ -7,8 +7,8 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'svg',
-    component: () => import(/* webpackChunkName: "about" */ '../views/SvgCom')
+    name: 'g2',
+    component: () => import(/* webpackChunkName: "about" */ '../views/G2Com')
   },
   {
     path: '/about',
@@ -27,6 +27,11 @@ const routes = [
     path: '/svg',
     name: 'Svg',
     component: () => import(/* webpackChunkName: "about" */ '../views/SvgCom')
+  },
+  {
+    path: '/g2',
+    name: 'G2',
+    component: () => import(/* webpackChunkName: "about" */ '../views/G2Com')
   }
 ]
 
