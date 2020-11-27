@@ -7,6 +7,8 @@
 <script>
 import G6 from '@antv/g6'
 import * as mock from './mock'
+// import check from './svg/check.svg'
+import './registerNode.js'
 
 export default {
   name: 'G2Com',
@@ -27,83 +29,59 @@ export default {
       const width = container.scrollWidth || 1500
       const height = container.scrollHeight || 360
 
+      const tooltip = new G6.Tooltip({
+        offsetX: 30 + 10,
+        offsetY: 30 + 10,
+        itemTypes: ['node', 'edge'],
+        getContent: (e) => {
+          const outDiv = document.createElement('div')
+          outDiv.style.width = 'fit-content'
+          // outDiv.style.padding = '0px 0px 20px 0px'
+          outDiv.innerHTML = `
+          <h4>Custom Content</h4>
+          <ul>
+            <li>Type: ${e.item.getType()}</li>
+          </ul>
+          <ul>
+            <li>Label: ${e.item.getModel().label || e.item.getModel().id}</li>
+          </ul>`
+          return outDiv
+        }
+      })
+
       const graph = new G6.Graph({
         container: id,
         width,
         height,
         fitView: true,
+        plugins: [tooltip],
         modes: {
           default: ['drag-canvas', 'drag-node']
         },
         layout: {
           type: 'dagre',
           rankdir: 'LR',
-          align: 'UL',
+          // align: 'UL',
           controlPoints: true,
           nodesepFunc: () => 1,
           ranksepFunc: () => 1
         },
         defaultNode: {
           type: 'modelRect',
-          size: [270, 80],
+          size: [160, 40],
           style: {
-            radius: 5,
-            stroke: '#69c0ff',
-            fill: '#ffffff',
-            lineWidth: 1,
-            fillOpacity: 1
-          },
-          // label configurations
-          labelCfg: {
-            style: {
-              fill: '#595959',
-              fontSize: 14
-            },
-            offset: 30
-          },
-          // left rect
-          preRect: {
-            show: true,
-            width: 4,
-            fill: '#40a9ff',
-            radius: 2
-          },
-          // configurations for the four linkpoints
-          linkPoints: {
-            top: false,
-            right: false,
-            bottom: false,
-            left: false,
-            // the size of the linkpoints' circle
-            size: 10,
-            lineWidth: 1,
-            fill: '#72CC4A',
-            stroke: '#72CC4A'
-          },
-          // configurations for state icon
-          stateIcon: {
-            // whether to show the icon
-            show: true,
-            x: 0,
-            y: 0,
-            // the image url for the icon, string type
-            img:
-              'https://gw.alipayobjects.com/zos/basement_prod/300a2523-67e0-4cbf-9d4a-67c077b40395.svg',
-            width: 16,
-            height: 16,
-            // adjust hte offset along x-axis for the icon
-            offset: -5
+            cursor: 'pointer'
           }
         },
         defaultEdge: {
           type: 'polyline',
-          /* configure the bending radius and min distance to the end nodes */
           style: {
             lineWidth: 2,
+            lineAppendWidth: 10,
             radius: 10,
             offset: 30,
-            endArrow: true
-            // stroke: '#F6BD16'
+            endArrow: true,
+            cursor: 'pointer'
           }
         },
         nodeStateStyles: {
@@ -114,6 +92,7 @@ export default {
           }
         }
       })
+
       graph.data(mock.data)
       graph.render()
 

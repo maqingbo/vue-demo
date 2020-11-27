@@ -3,11 +3,12 @@ export const data = {
     {
       id: '0',
       label: '0',
-      description: 'description, hidden when undefined'
+      status: 1
     },
     {
       id: '1',
-      label: '1'
+      label: '1',
+      status: 0
     },
     {
       id: '2',
@@ -32,32 +33,20 @@ export const data = {
     {
       id: '7',
       label: '7'
-    },
-    {
-      id: '8',
-      label: '8'
-    },
-    {
-      id: '9',
-      label: '9'
     }
   ],
   edges: [
     {
       source: '0',
-      target: '1'
-    },
-    {
-      source: '0',
-      target: '2'
+      target: '4'
     },
     {
       source: '1',
       target: '4'
     },
     {
-      source: '0',
-      target: '3'
+      source: '2',
+      target: '4'
     },
     {
       source: '3',
@@ -72,24 +61,8 @@ export const data = {
       target: '6'
     },
     {
-      source: '5',
+      source: '4',
       target: '7'
-    },
-    {
-      source: '5',
-      target: '8'
-    },
-    {
-      source: '8',
-      target: '9'
-    },
-    {
-      source: '2',
-      target: '9'
-    },
-    {
-      source: '3',
-      target: '9'
     }
   ]
 }
