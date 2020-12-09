@@ -7,8 +7,8 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'g2',
-    component: () => import(/* webpackChunkName: "about" */ '../views/G2Com')
+    name: 'scrollTo',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ScrollTo')
   },
   {
     path: '/about',
@@ -32,6 +32,11 @@ const routes = [
     path: '/g2',
     name: 'G2',
     component: () => import(/* webpackChunkName: "about" */ '../views/G2Com')
+  },
+  {
+    path: '/scrollTo',
+    name: 'scrollTo',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ScrollTo')
   }
 ]
 
